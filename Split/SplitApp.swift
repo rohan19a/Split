@@ -44,29 +44,3 @@ struct SplitApp: App {
         }
     }
 }
-struct LoadingView: View {
-    @State private var isLoading: Bool = true
-    
-    var body: some View {
-        VStack {
-            if isLoading {
-                // Show loading spinner or other loading UI
-            } else {
-                NavigationView {
-                    LoginView()
-                        .navigationBarTitle("")
-                        .navigationBarHidden(true)
-                }
-            }
-        }
-        .onAppear {
-            // Check if user is already signed in and set isLoading accordingly
-            // Example Firebase code to check for current user
-            if Auth.auth().currentUser != nil {
-                isLoading = false
-            } else {
-                isLoading = false
-            }
-        }
-    }
-}
