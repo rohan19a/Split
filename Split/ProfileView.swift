@@ -153,7 +153,7 @@ class ProfileViewModel: ObservableObject {
                 let text = data["text"] as! String
                 let date = (data["date"] as! Timestamp).dateValue()
                 
-                return Review(reviewerName)
+                return Review(from: reviewerName as! Decoder)
             }
         }
     }

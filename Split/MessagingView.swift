@@ -11,7 +11,7 @@ import Firebase
 
 struct Message: Identifiable {
     var id = UUID()
-    let senderId: String
+    var senderId: String
     let senderName: String
     let text: String
     let sentAt: Date
@@ -34,8 +34,8 @@ struct MessagingView: View {
             }
             .padding(.horizontal)
 
-            List($viewModel.messages) { message in
-                MessageRow(message: message, isCurrentUser: message.senderId == viewModel.currentUser?.uid)
+            List($viewModel.messages) { $message in
+                MessageRow(message: $message.wrappedValue, isCurrentUser: message.senderId == viewModel.currentUser?.uid)
             }
             .listStyle(PlainListStyle())
 
@@ -96,7 +96,7 @@ class MessagingViewModel: ObservableObject {
     
     private var listener: ListenerRegistration?
     private let db = Firestore.firestore()
-    private let currentUser = Auth.auth().currentUser
+    public let currentUser = Auth.auth().currentUser
     
     func connect() {
         guard currentUser != nil else { return }
