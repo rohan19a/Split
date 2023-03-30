@@ -26,18 +26,13 @@ struct SplitApp: App {
             LoadingView()
             NavigationView {
                 VStack {
-                    Text("Main Page")
-                        .font(.title)
-                        .padding()
-                    
-                    NavigationLink(destination: ItemSelectionView()) {
-                        Text("Select Items")
-                            .foregroundColor(.white)
-                            .padding()
-                            .background(Color.blue)
-                            .cornerRadius(5)
+                    NavigationLink(destination: LoginView()) {
+                        Text("Login")
                     }
-                    .padding()
+                    .padding().background(Color.blue).foregroundColor(.white).cornerRadius(5)
+                    NavigationLink(destination: SignupView()) {
+                        Text("Register")
+                    }.padding().background(Color.blue).foregroundColor(.white).cornerRadius(5)
                 }
                 .navigationTitle("My App")
             }
