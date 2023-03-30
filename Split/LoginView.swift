@@ -16,8 +16,7 @@ class SessionStore: ObservableObject {
     var handle: AuthStateDidChangeListenerHandle?
 
     func listen() {
-        // Monitor authentication state changes using Firebase.
-        handle = Auth.auth().addStateDidChangeListener { auth, user in
+        handle = Auth.auth().addStateDidChangeListener { (auth, user) in
             if let user = user {
                 self.currentUser = user
                 self.isLogged = true
@@ -27,6 +26,7 @@ class SessionStore: ObservableObject {
             }
         }
     }
+
 
     func signIn(email: String, password: String, completion: @escaping (AuthDataResult?, Error?) -> Void) {
         Auth.auth().signIn(withEmail: email, password: password, completion: completion)
@@ -87,10 +87,19 @@ struct LoginView: View {
             Text(errorMessage)
                 .foregroundColor(.red)
             
-            NavigationLink(destination: ContentView(), isActive: $session.isLogged) {
-                EmptyView()
+            NavigationView {
+                ZStack {
+                    if session.isLogged {
+                        ContentView()
+                    } else {
+                        LoginView()
+                    }
+                }
+                .onAppear(perform: session.listen)
+                .navigationViewStyle(StackNavigationViewStyle())
             }
-            .hidden() // Hide the link initially
+
+
         }
         .padding(.horizontal, 30)
     }
