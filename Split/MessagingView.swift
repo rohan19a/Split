@@ -9,6 +9,15 @@ import Foundation
 import SwiftUI
 import Firebase
 
+struct Message: Identifiable {
+    var id = UUID()
+    let senderId: String
+    let senderName: String
+    let text: String
+    let sentAt: Date
+}
+
+
 struct MessagingView: View {
     @ObservedObject var viewModel: MessagingViewModel
 
@@ -25,7 +34,7 @@ struct MessagingView: View {
             }
             .padding(.horizontal)
 
-            List(viewModel.messages) { message in
+            List($viewModel.messages) { message in
                 MessageRow(message: message, isCurrentUser: message.senderId == viewModel.currentUser?.uid)
             }
             .listStyle(PlainListStyle())
@@ -90,7 +99,7 @@ class MessagingViewModel: ObservableObject {
     private let currentUser = Auth.auth().currentUser
     
     func connect() {
-        guard let currentUser = currentUser else { return }
+        guard currentUser != nil else { return }
         
         listener = db.collection("messages")
             .order(by: "sentAt", descending: false)
@@ -138,7 +147,7 @@ class MessagingViewModel: ObservableObject {
     func signOut() {
         do {
             try Auth.auth().signOut()
-        } catch let signOutError as NSError {
+        } catch let _ as NSError {
             print("Error signing out")
         }
     }

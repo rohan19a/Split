@@ -18,7 +18,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 
 @main
 struct SplitApp: App {
-    
+    @StateObject var session = SessionStore()
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     
     var body: some Scene {

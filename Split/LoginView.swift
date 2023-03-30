@@ -8,11 +8,51 @@
 import Foundation
 import SwiftUI
 import Firebase
+import Combine
+
+class SessionStore: ObservableObject {
+    @Published var currentUser: User?
+    @Published var isLogged: Bool = false
+    var handle: AuthStateDidChangeListenerHandle?
+
+    func listen() {
+        // Monitor authentication state changes using Firebase.
+        handle = Auth.auth().addStateDidChangeListener { auth, user in
+            if let user = user {
+                self.currentUser = user
+                self.isLogged = true
+            } else {
+                self.currentUser = nil
+                self.isLogged = false
+            }
+        }
+    }
+
+    func signIn(email: String, password: String, completion: @escaping (AuthDataResult?, Error?) -> Void) {
+        Auth.auth().signIn(withEmail: email, password: password, completion: completion)
+    }
+
+    func signOut() {
+        do {
+            try Auth.auth().signOut()
+            self.currentUser = nil
+            self.isLogged = false
+        } catch {
+            print("Error signing out: \(error.localizedDescription)")
+        }
+    }
+
+    deinit {
+        // Stop listening for authentication state changes.
+        Auth.auth().removeStateDidChangeListener(handle!)
+    }
+}
 
 struct LoginView: View {
     @State private var email: String = ""
     @State private var password: String = ""
     @State private var errorMessage: String = ""
+    @EnvironmentObject var session: SessionStore
     
     var body: some View {
         VStack {
@@ -46,6 +86,11 @@ struct LoginView: View {
             
             Text(errorMessage)
                 .foregroundColor(.red)
+            
+            NavigationLink(destination: ContentView(), isActive: $session.isLogged) {
+                EmptyView()
+            }
+            .hidden() // Hide the link initially
         }
         .padding(.horizontal, 30)
     }
@@ -59,6 +104,7 @@ struct LoginView: View {
                 self.password = ""
                 self.errorMessage = ""
                 // Navigate to next screen after successful login
+                self.session.isLogged = true
             }
         }
     }
