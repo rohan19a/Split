@@ -16,6 +16,7 @@
 		521D2BA129C400F4005BA2F4 /* SplitUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521D2BA029C400F4005BA2F4 /* SplitUITestsLaunchTests.swift */; };
 		52599EEA29CA849100089D62 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52599EE929CA849100089D62 /* LoginView.swift */; };
 		52A3C99829EFAA99001FABFF /* ShoppingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A3C99729EFAA99001FABFF /* ShoppingView.swift */; };
+		52A3C99A29EFAC95001FABFF /* CheckoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A3C99929EFAC95001FABFF /* CheckoutView.swift */; };
 		52BA3E8D29CE4D9000A884FE /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 52BA3E8C29CE4D9000A884FE /* FirebaseAnalytics */; };
 		52BA3E8F29CE4D9000A884FE /* FirebaseAnalyticsOnDeviceConversion in Frameworks */ = {isa = PBXBuildFile; productRef = 52BA3E8E29CE4D9000A884FE /* FirebaseAnalyticsOnDeviceConversion */; };
 		52BA3E9129CE4D9000A884FE /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 52BA3E9029CE4D9000A884FE /* FirebaseAuth */; };
@@ -71,6 +72,7 @@
 		521D2BA029C400F4005BA2F4 /* SplitUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		52599EE929CA849100089D62 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		52A3C99729EFAA99001FABFF /* ShoppingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingView.swift; sourceTree = "<group>"; };
+		52A3C99929EFAC95001FABFF /* CheckoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutView.swift; sourceTree = "<group>"; };
 		52BA3EB229CFA8B800A884FE /* SignupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupView.swift; sourceTree = "<group>"; };
 		52BA3EB429CFA92E00A884FE /* MessagingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagingView.swift; sourceTree = "<group>"; };
 		52BA3EB629CFA9EB00A884FE /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
@@ -149,6 +151,7 @@
 				52599EE929CA849100089D62 /* LoginView.swift */,
 				521D2B8529C400F2005BA2F4 /* ContentView.swift */,
 				52A3C99729EFAA99001FABFF /* ShoppingView.swift */,
+				52A3C99929EFAC95001FABFF /* CheckoutView.swift */,
 				52BA3EB429CFA92E00A884FE /* MessagingView.swift */,
 				52BA3EB629CFA9EB00A884FE /* ProfileView.swift */,
 				52BA3EB229CFA8B800A884FE /* SignupView.swift */,
@@ -345,6 +348,7 @@
 				52BA3EB729CFA9EB00A884FE /* ProfileView.swift in Sources */,
 				52F6203B29D35EAD002A625A /* LoadingView.swift in Sources */,
 				521D2B8429C400F2005BA2F4 /* SplitApp.swift in Sources */,
+				52A3C99A29EFAC95001FABFF /* CheckoutView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
