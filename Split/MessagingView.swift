@@ -147,7 +147,7 @@ class MessagingViewModel: ObservableObject {
     func signOut() {
         do {
             try Auth.auth().signOut()
-        } catch let _ as NSError {
+        } catch _ as NSError {
             print("Error signing out")
         }
     }

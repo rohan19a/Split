@@ -12,9 +12,8 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             VStack {
-                Text("Welcome to the Forum")
-                    .font(.title)
-                    .padding()
+                //Split Shopp
+                Text("Split\nShopp").font(.custom("Irish Grover Regular", size: 96)).foregroundColor(Color(#colorLiteral(red: 0.69, green: 0.49, blue: 0.49, alpha: 1))).multilineTextAlignment(.center)
                 
                 NavigationLink(destination: NewPostView()) {
                     Text("New Post")

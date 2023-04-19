@@ -18,7 +18,7 @@ class SessionStore: ObservableObject {
     func listen() {
         handle = Auth.auth().addStateDidChangeListener { (auth, user) in
             if let user = user {
-                self.currentUser = user
+                //self.currentUser = user
                 self.isLogged = true
             } else {
                 self.currentUser = nil
