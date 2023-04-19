@@ -23,19 +23,7 @@ struct SplitApp: App {
     
     var body: some Scene {
         WindowGroup {
-            LoadingView()
-            NavigationView {
-                VStack {
-                    NavigationLink(destination: LoginView()) {
-                        Text("Login")
-                    }
-                    .padding().background(Color.blue).foregroundColor(.white).cornerRadius(5)
-                    NavigationLink(destination: SignupView()) {
-                        Text("Register")
-                    }.padding().background(Color.blue).foregroundColor(.white).cornerRadius(5)
-                }
-                .navigationTitle("My App")
+            CartView()
             }
         }
     }
-}

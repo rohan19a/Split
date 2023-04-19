@@ -115,7 +115,7 @@ class ProfileViewModel: ObservableObject {
         dateFormatter.timeStyle = .none
         return dateFormatter
     }()
-
+    
     func formatDate(_ date: Date) -> String {
         return dateFormatter.string(from: date)
     }
@@ -139,23 +139,5 @@ class ProfileViewModel: ObservableObject {
                 self.completedTransactions = user?.completedTransactions ?? 0
             }
         }
-        
-        // Load user reviews
-        db.collection("reviews").whereField("userId", isEqualTo: currentUser.uid).getDocuments { querySnapshot, error in
-            guard let documents = querySnapshot?.documents else {
-                print("Error fetching review documents: \(error!)")
-                return
-            }
-            
-            let reviews = documents.compactMap { document -> Review? in
-                let data = document.data()
-                let reviewerName = data["reviewerName"] as! String
-                let text = data["text"] as! String
-                let date = (data["date"] as! Timestamp).dateValue()
-                
-                return Review(from: reviewerName as! Decoder)
-            }
-        }
     }
 }
-    
