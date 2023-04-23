@@ -74,10 +74,7 @@ struct CheckoutView: View {
                         Picker(selection: $selectedPaymentMethod, label: Text("Payment Method")) {
                             Text("Credit Card").tag(0)
                                 .font(.custom("Irish Grover Regular", size: 18))
-                            Text("PayPal").tag(1)
-                                .font(.custom("Irish Grover Regular", size: 18))
                         }
-                        
                         if selectedPaymentMethod == 0 {
                             // Show Credit Card Input
                             TextField("Card Number", text: .constant(""))
