@@ -49,73 +49,60 @@ class SessionStore: ObservableObject {
 }
 
 struct LoginView: View {
-    @State private var email: String = ""
-    @State private var password: String = ""
-    @State private var errorMessage: String = ""
-    @EnvironmentObject var session: SessionStore
-    
+    @State private var email = ""
+    @State private var password = ""
+    let backgroundColor = Color(red:220/255, green:242/255, blue:255/255)
     var body: some View {
+
         VStack {
-            Text("Sign in")
-                .font(.largeTitle)
-                .fontWeight(.bold)
-                .padding(.bottom, 50)
             
-            TextField("Email", text: $email)
+            let textFieldColor = Color(red: 217/255, green: 217/255, blue: 217/255)
+            let buttonColor = Color(red: 240/255, green: 217/255, blue: 217/255)
+            Text("SplitShopp")
+                .frame(width: 300, height: 100)
+                .padding(.bottom, 50).font(.system(size:60.0))
+            
+            TextField("Username", text: $email)
                 .padding()
-                .background(Color(.systemGray6))
-                .cornerRadius(10)
+                .background(textFieldColor)
                 .padding(.bottom, 20)
             
             SecureField("Password", text: $password)
                 .padding()
-                .background(Color(.systemGray6))
-                .cornerRadius(10)
+                .background(textFieldColor)
                 .padding(.bottom, 20)
             
-            Button(action: signIn) {
-                Text("Sign In")
+            Button(action: {
+
+            }) {
+                Text("Sign Up")
                     .font(.headline)
                     .foregroundColor(.white)
                     .padding()
                     .frame(width: 220, height: 60)
-                    .background(Color.blue)
-                    .cornerRadius(15.0)
+                    .background(buttonColor)
+                    .cornerRadius(100.0)
             }
-            .padding(.bottom, 20)
-            
-            Text(errorMessage)
-                .foregroundColor(.red)
-            
-            NavigationView {
-                ZStack {
-                    if session.isLogged {
-                        ContentView()
-                    } else {
-                        LoginView()
-                    }
-                }
-                .onAppear(perform: session.listen)
-                .navigationViewStyle(StackNavigationViewStyle())
+            Button(action: {
+
+            }) {
+                Text("Login")
+                    .font(.headline)
+                    .foregroundColor(.white)
+                    .padding()
+                    .frame(width: 220, height: 60)
+                    .   background(buttonColor)
+                    .cornerRadius(100.0)
             }
-
-
         }
-        .padding(.horizontal, 30)
+        .padding().background(backgroundColor.edgesIgnoringSafeArea(.all))
     }
     
-    private func signIn() {
-        Auth.auth().signIn(withEmail: email, password: password) { authResult, error in
-            if let error = error {
-                self.errorMessage = error.localizedDescription
-            } else {
-                self.email = ""
-                self.password = ""
-                self.errorMessage = ""
-                // Navigate to next screen after successful login
-                self.session.isLogged = true
-            }
-        }
-    }
 }
 
+
+struct LoginView_Previews: PreviewProvider {
+    static var previews: some View {
+        LoginView()
+    }
+}
