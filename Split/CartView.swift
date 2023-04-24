@@ -68,10 +68,10 @@ struct CartView: View {
             guard let snapshot = snapshot else { return }
             
             cartItems = snapshot.documents.compactMap { document in
-                guard let data = document.data(),
-                      let name = data["name"] as? String,
-                      let price = data["price"] as? Double,
-                      let quantity = data["quantity"] as? Int else {
+                guard let data: Optional = document.data(),
+                      let name = data?["name"] as? String,
+                      let price = data?["price"] as? Double,
+                      let quantity = data?["quantity"] as? Int else {
                     return nil
                 }
                 
