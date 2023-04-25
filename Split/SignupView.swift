@@ -11,6 +11,7 @@ import Firebase
 
 struct SignupView: View {
     @State private var email = ""
+    @State private var name = ""
     @State private var password = ""
     @State private var confirmPassword = ""
     @State private var errorMessage = ""
@@ -21,12 +22,12 @@ struct SignupView: View {
             let buttonColor = Color(red: 240/255, green: 217/255, blue: 217/255)
             Text("Sign up").font(.largeTitle)
 
-            TextField("Name", text: $email)
+            TextField("Name", text: $name)
                 .padding()
                 .background(textFieldColor)
                 .padding(.bottom, 20)
             
-            TextField("Username", text: $email)
+            TextField("Email", text: $email)
                 .padding()
                 .background(textFieldColor)
                 .padding(.bottom, 20)
@@ -36,7 +37,7 @@ struct SignupView: View {
                 .background(textFieldColor)
                 .padding(.bottom, 20)
 
-            SecureField("Confirm Password", text: $password)
+            SecureField("Confirm Password", text: $confirmPassword)
                 .padding()
                 .background(textFieldColor)
                 .padding(.bottom, 20)
